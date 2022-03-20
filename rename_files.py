@@ -1,16 +1,17 @@
 #rename a lot of files at once, specifically in this case anime episodes
 
+from msilib.schema import Directory
 import os
-from tkinter import BOTTOM, RIGHT, Button, Frame, Tk, font
+from tkinter import BOTTOM, Button, Entry, Frame, Tk, font
+from tokenize import String
 
-DIRECTORY = r"C:\Users\capta\Pictures\\"
+DIRECTORY = ""
 ANIME_NAME = ""
 FILE_EXTENSION = ".mkv"
 TOTAL_EPISODES = 0
 
 def rename_files(folder,anime,extension,total_episodes):
     episode = 1
-    os.chdir(folder)
     for filename in os.listdir(folder):
         EP = str(episode)
         source = folder + filename
@@ -35,17 +36,26 @@ def rename_files(folder,anime,extension,total_episodes):
 
 def gui():
     base = Tk()
-    base.geometry("500x500")
+    base.geometry("300x300")
     frame = Frame(base)
     frame.pack()
+    folder_entry = Entry(frame, width = 20)
+    folder_entry.insert(0,"file directory")
+    folder_entry.pack(padx=5,pady=5)
+    dir_button = Button(frame, text = "set directory", command=lambda:set_dir(folder_entry))
+    dir_button.pack(padx=5,pady=5)
     bottom_frame = Frame(base)
     bottom_frame.pack(side=BOTTOM)
-    button = Button(bottom_frame, text = "Rename Files!", command = rename_files(DIRECTORY,ANIME_NAME,FILE_EXTENSION,TOTAL_EPISODES), 
-    font = ("Impact 20"))
-    button.pack(pady = 10)
+    run_button = Button(bottom_frame, text = "Rename Files!", command=lambda:rename_files(DIRECTORY,ANIME_NAME,FILE_EXTENSION,TOTAL_EPISODES), 
+    font = ("Impact 15"))
+    run_button.pack()
     base.title("Batch Rename Episode Files")
     base.mainloop()
 
+def set_dir(entry:Entry):
+    DIRECTORY = "C:\\Users\\capta\\Downloads"
+    os.chdir(DIRECTORY)
+    
 
 
 if __name__ == "__main__":
