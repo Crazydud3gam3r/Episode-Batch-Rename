@@ -2,7 +2,7 @@
 
 from msilib.schema import Directory
 import os
-from tkinter import BOTTOM, Button, Entry, Frame, Tk, font
+from tkinter import BOTTOM, Button, Entry, Frame, Label, StringVar, Tk, font
 from tokenize import String
 
 DIRECTORY = ""
@@ -39,6 +39,10 @@ def gui():
     base.geometry("300x300")
     frame = Frame(base)
     frame.pack()
+    dir_text = StringVar()
+    dir_text.set("Enter the path to the folder containing the files:")
+    dir_label = Label(frame, textvariable = dir_text)
+    dir_label.pack()
     dir_entry = Entry(frame, width = 45,bd=2,)
     dir_entry.insert(0,"path to folder")
     dir_entry.pack(padx=5,pady=5)
