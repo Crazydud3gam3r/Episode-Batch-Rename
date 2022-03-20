@@ -1,5 +1,6 @@
 #rename a lot of files at once, specifically in this case anime episodes
 
+from asyncio.windows_events import NULL
 import os
 from tkinter import *
 
@@ -8,7 +9,7 @@ ANIME_NAME = ""
 FILE_EXTENSION = ".mkv"
 TOTAL_EPISODES = 0
 
-def rename_dem_files(folder,anime,extension,total_episodes):
+def rename_files(folder,anime,extension,total_episodes):
     episode = 1
     os.chdir(folder)
     for filename in os.listdir(folder):
@@ -40,17 +41,11 @@ def gui():
     frame.pack()
 
     
-    
-    base.title("bruh")
+    button = Button(frame, text = "Rename Files!", command = rename_files(NULL,NULL,NULL,NULL))
+    base.title("Batch Rename Episode Files")
     base.mainloop()
 
 
 
 if __name__ == "__main__":
-    # rename_dem_files(DIRECTORY,ANIME_NAME,FILE_EXTENSION)
     gui()
-
-#usage even tho it's super self explanatory:
-#change the DIRECTORY to r"?:\.....destination\\" (make sure to have the \\ inside the "", VERY IMPORTANT)
-#change ANIME_NAME to whatever the anime is
-#change the FILE_EXTENSION to whatever file extension the files are (100% going to be mkv)
