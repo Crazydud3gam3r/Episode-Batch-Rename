@@ -17,19 +17,19 @@ def rename_files(directory,name,file_extension,total_episodes):
         source = directory + filename
         if total_episodes > 10 and not (total_episodes > 100):
             if episode <= 9:
-                EP = "0" + episode
+                EP = "0" + EP
         elif total_episodes > 100 and not (total_episodes > 1000):
             if episode <= 9:
-                EP = "00" + episode
+                EP = "00" + EP
             elif episode <= 99:
-                EP = "0" + episode
+                EP = "0" + EP
         elif total_episodes > 1000:
             if episode <= 9:
-                EP = "000" + episode
+                EP = "000" + EP
             elif episode <= 99:
-                EP = "00" + episode
+                EP = "00" + EP
             elif episode <= 999:
-                EP = "0" + episode
+                EP = "0" + EP
         destination = directory + name + " Episode " + EP + file_extension
         os.rename(source, destination)
         episode += 1
@@ -45,9 +45,15 @@ def gui():
     name_entry = Entry(frame, width = 45,bd=2,)
     name_entry.insert(0,"name of show")
     name_entry.pack(padx=5,pady=5)
+    ext_entry = Entry(frame, width = 45,bd=2,)
+    ext_entry.insert(0,".mkv")
+    ext_entry.pack(padx=5,pady=5)
+    total_entry = Entry(frame, width = 45,bd=2,)
+    total_entry.insert(0,"total number of episodes")
+    total_entry.pack(padx=5,pady=5)
     bottom_frame = Frame(base)
     bottom_frame.pack(side=BOTTOM)
-    run_button = Button(bottom_frame, text = "Rename Files!", command=lambda:run_all(dir_entry,), 
+    run_button = Button(bottom_frame, text = "Rename Files!", command=lambda:run_all(dir_entry,name_entry,ext_entry,total_entry), 
     font = ("Impact 15"))
     run_button.pack(pady=5)
     base.title("Batch Rename Episode Files")
