@@ -39,7 +39,7 @@ def gui():
     base.geometry("300x300")
     frame = Frame(base)
     frame.pack()
-    folder_entry = Entry(frame, width = 20)
+    folder_entry = Entry(frame, width = 45,bd=2,)
     folder_entry.insert(0,"file directory")
     folder_entry.pack(padx=5,pady=5)
     dir_button = Button(frame, text = "set directory", command=lambda:set_dir(folder_entry))
@@ -48,12 +48,13 @@ def gui():
     bottom_frame.pack(side=BOTTOM)
     run_button = Button(bottom_frame, text = "Rename Files!", command=lambda:rename_files(DIRECTORY,ANIME_NAME,FILE_EXTENSION,TOTAL_EPISODES), 
     font = ("Impact 15"))
-    run_button.pack()
+    run_button.pack(pady=5)
     base.title("Batch Rename Episode Files")
     base.mainloop()
 
 def set_dir(entry:Entry):
-    DIRECTORY = "C:\\Users\\capta\\Downloads"
+    global DIRECTORY
+    DIRECTORY = entry.get() + "\\"
     os.chdir(DIRECTORY)
     
 
