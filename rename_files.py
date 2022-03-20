@@ -67,10 +67,10 @@ def gui():
     total_entry = Entry(frame, width = 45,bd=2,)
     total_entry.insert(0,"total number of episodes")
     total_entry.pack(padx=5,pady=5)
-    scheme_list = ["Option1", "Option2", "Option3","Option4", "Option5"]
-    scheme_chooser = ttk.Combobox(frame, values = scheme_list)
-    scheme_chooser.set("Pick an Option")
-    scheme_chooser.pack(padx = 5, pady = 5)
+    scheme_list = ["<Name> Episode #" , "<Name> Season # Episode #", "<Name> E#","<Name> S#E#"]
+    scheme_chooser = ttk.Combobox(frame, values = scheme_list, width=42)
+    scheme_chooser.set("Select the naming scheme you want")
+    scheme_chooser.pack(pady = 5)
     bottom_frame = Frame(base)
     bottom_frame.pack(side=BOTTOM)
     run_button = Button(bottom_frame, text = "Rename Files!", command=lambda:run_all(dir_entry,name_entry,ext_entry,total_entry), 
