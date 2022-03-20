@@ -1,9 +1,7 @@
 #rename a lot of files at once, specifically in this case anime episodes
 
-from msilib.schema import Directory
 import os
-from tkinter import BOTTOM, Button, Entry, Frame, Label, StringVar, Tk, font, ttk
-from tokenize import String
+from tkinter import BOTTOM, Button, Entry, Frame, Label, StringVar, Tk, ttk
 
 DIRECTORY = ""
 NAME = ""
