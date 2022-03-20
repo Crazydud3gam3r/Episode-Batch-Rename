@@ -35,7 +35,7 @@ def rename_files(directory,name,file_extension,total_episodes):
 
 def gui():
     base = Tk()
-    base.geometry("300x400")
+    base.geometry("300x370")
     frame = Frame(base)
     frame.pack()
     dir_text = StringVar()
@@ -70,6 +70,13 @@ def gui():
     scheme_chooser = ttk.Combobox(frame, values = scheme_list, width=42)
     scheme_chooser.set("Select the naming scheme you want to use")
     scheme_chooser.pack(pady = 10)
+    season_text = StringVar()
+    season_text.set("Enter how many episodes there are per season:\n(leave this option at 0 if it is not needed)")
+    season_label = Label(frame, textvariable = season_text)
+    season_label.pack()
+    season_entry = Entry(frame, width = 45,bd=2,)
+    season_entry.insert(0,"0")
+    season_entry.pack(padx=5,pady=5)
     bottom_frame = Frame(base)
     bottom_frame.pack(side=BOTTOM)
     run_button = Button(bottom_frame, text = "Rename Files!", command=lambda:run_all(dir_entry,name_entry,ext_entry,total_entry), 
