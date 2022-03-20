@@ -1,10 +1,9 @@
 #rename a lot of files at once, specifically in this case anime episodes
 
-from asyncio.windows_events import NULL
 import os
-from tkinter import *
+from tkinter import BOTTOM, RIGHT, Button, Frame, Tk, font
 
-DIRECTORY = r"\\"
+DIRECTORY = r"C:\Users\capta\Pictures\\"
 ANIME_NAME = ""
 FILE_EXTENSION = ".mkv"
 TOTAL_EPISODES = 0
@@ -39,9 +38,11 @@ def gui():
     base.geometry("500x500")
     frame = Frame(base)
     frame.pack()
-
-    
-    button = Button(frame, text = "Rename Files!", command = rename_files(NULL,NULL,NULL,NULL))
+    bottom_frame = Frame(base)
+    bottom_frame.pack(side=BOTTOM)
+    button = Button(bottom_frame, text = "Rename Files!", command = rename_files(DIRECTORY,ANIME_NAME,FILE_EXTENSION,TOTAL_EPISODES), 
+    font = ("Impact 20"))
+    button.pack(pady = 10)
     base.title("Batch Rename Episode Files")
     base.mainloop()
 
