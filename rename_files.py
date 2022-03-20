@@ -7,6 +7,7 @@ DIRECTORY = ""
 NAME = ""
 FILE_EXTENSION = ".mkv"
 TOTAL_EPISODES = 0
+NAMING_SCHEME = ""
 
 def rename_files(directory,name,file_extension,total_episodes):
     episode = 1
@@ -67,8 +68,8 @@ def gui():
     total_entry.pack(padx=5,pady=5)
     scheme_list = ["<Name> Episode #" , "<Name> Season # Episode #", "<Name> E#","<Name> S#E#"]
     scheme_chooser = ttk.Combobox(frame, values = scheme_list, width=42)
-    scheme_chooser.set("Select the naming scheme you want")
-    scheme_chooser.pack(pady = 5)
+    scheme_chooser.set("Select the naming scheme you want to use")
+    scheme_chooser.pack(pady = 10)
     bottom_frame = Frame(base)
     bottom_frame.pack(side=BOTTOM)
     run_button = Button(bottom_frame, text = "Rename Files!", command=lambda:run_all(dir_entry,name_entry,ext_entry,total_entry), 
@@ -94,13 +95,17 @@ def set_total(entry:Entry):
     global TOTAL_EPISODES
     TOTAL_EPISODES = int(entry.get())
 
-def run_all(dir:Entry,name:Entry,ext:Entry,total:Entry):
+def set_naming(combo:ttk.Combobox):
+    global NAMING_SCHEME
+    NAMING_SCHEME = combo.get()
+
+def run_all(dir:Entry,name:Entry,ext:Entry,total:Entry,scheme:ttk.Combobox):
     set_dir(dir)
     set_name(name)
     set_ext(ext)
     set_total(total)
+    set_naming(scheme)
     rename_files(DIRECTORY,NAME,FILE_EXTENSION,TOTAL_EPISODES)
-
 
 if __name__ == "__main__":
     gui()
