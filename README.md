@@ -1,6 +1,5 @@
-A way to batch rename episode files en masse using python
+Very simple, follow what the GUI says and you will be good to go
 
-Follow what the prompts say and there you have it
 Options for naming scheme are as follows:
 
 Name Episode #
