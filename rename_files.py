@@ -123,6 +123,16 @@ def set_season(entry:Entry):
     global EP_PER_SEASON
     EP_PER_SEASON = int(entry.get())
 
+def label_entry_pack(label_desc, entry_text, frame):
+    text = StringVar()
+    text.set(label_desc)
+    label = Label(frame, textvariable=text)
+    label.pack()
+    entry = Entry(frame, width = 45,bd=2,)
+    entry.insert(0,entry_text)
+    entry.pack(padx=5,pady=5)
+    return entry
+
 def run_all(dir:Entry,name:Entry,ext:Entry,total:Entry,scheme:ttk.Combobox,season:Entry):
     set_dir(dir)
     set_name(name)
