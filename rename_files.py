@@ -108,8 +108,9 @@ def label_entry_pack(label_desc, entry_text, frame, entry_list:list):
     entry_list.append(entry)
 
 def run_all(dir:Entry,name:Entry,ext:Entry,total:Entry,season:Entry,scheme:ttk.Combobox):
-    os.chdir((dir.get() + "\\"))
-    rename_files(dir.get(),name.get(),ext.get(),int(total.get()),int(season.get()),scheme.get())
+    directory = dir.get() + "\\"
+    os.chdir(directory)
+    rename_files(directory,name.get(),ext.get(),int(total.get()),int(season.get()),scheme.get())
 
 if __name__ == "__main__":
     gui()
