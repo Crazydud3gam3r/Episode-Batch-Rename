@@ -29,13 +29,13 @@ def rename_files(directory,name,file_extension,total_episodes,ep_per_season,sche
                 EP = "0" + EP
         match scheme:
             case "<Name> Episode #":
-                destination = directory + name + " Episode " + EP + file_extension
+                destination = directory + name + " - Episode " + EP + file_extension
             case "<Name> Season # Episode #":
-                destination = directory + name + " Season " + str(season) + " Episode " + EP + file_extension
+                destination = directory + name + " - Season " + str(season) + " - Episode " + EP + file_extension
             case "<Name> E#":
-                destination = directory + name + " E" + EP + file_extension
+                destination = directory + name + " - E" + EP + file_extension
             case "<Name> S#E#":
-                destination = directory + name + " S" + str(season) + "E" + EP + file_extension
+                destination = directory + name + " - S" + str(season) + "E" + EP + file_extension
         os.rename(source, destination)
         episode += 1
 
