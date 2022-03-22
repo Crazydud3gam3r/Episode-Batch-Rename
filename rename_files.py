@@ -47,42 +47,23 @@ def rename_files(directory,name,file_extension,total_episodes,scheme):
         episode += 1
 
 def gui():
-    entry_list = []
+    e_list = []
     base = Tk()
     base.geometry("300x370")
     frame = Frame(base)
     frame.pack()
-    dir_label = "Enter the path to the folder containing the files:"
-    sdf = "path to folder"
-    label_entry_pack(asdf,sdf,frame,entry_list)
-    # dir_text = StringVar()
-    # dir_text.set("Enter the path to the folder containing the files:")
-    # dir_label = Label(frame, textvariable = dir_text)
-    # dir_label.pack()
-    # dir_entry = Entry(frame, width = 45,bd=2,)
-    # dir_entry.insert(0,"path to folder")
-    # dir_entry.pack(padx=5,pady=5)
-    name_text = StringVar()
-    name_text.set("Enter the name of the show:")
-    name_label = Label(frame, textvariable = name_text)
-    name_label.pack()
-    name_entry = Entry(frame, width = 45,bd=2,)
-    name_entry.insert(0,"name of show")
-    name_entry.pack(padx=5,pady=5)
-    ext_text = StringVar()
-    ext_text.set("Enter the extension that the files use:")
-    ext_label = Label(frame, textvariable = ext_text)
-    ext_label.pack()
-    ext_entry = Entry(frame, width = 45,bd=2,)
-    ext_entry.insert(0,".mkv")
-    ext_entry.pack(padx=5,pady=5)
-    total_text = StringVar()
-    total_text.set("Enter the total number of episodes:")
-    total_label = Label(frame, textvariable = total_text)
-    total_label.pack()
-    total_entry = Entry(frame, width = 45,bd=2,)
-    total_entry.insert(0,"total number of episodes")
-    total_entry.pack(padx=5,pady=5)
+    dir_label_text = "Enter the path to the folder containing the files:"
+    dir_entry_text = "path to folder"
+    name_label_text = "Enter the name of the show:"
+    name_entry_text = "name of show"
+    ext_label_text = "Enter the extension that the files use:"
+    ext_entry_text = ".mkv"
+    total_label_text = "Enter the total number of episodes:"
+    total_entry_text = "total number of episodes"
+    label_entry_pack(dir_label_text,dir_entry_text,frame,e_list)
+    label_entry_pack(name_label_text,name_entry_text,frame,e_list)
+    label_entry_pack(ext_label_text,ext_entry_text,frame,e_list)
+    label_entry_pack(total_label_text,total_entry_text,frame,e_list)
     scheme_list = ["<Name> Episode #" , "<Name> Season # Episode #", "<Name> E#","<Name> S#E#"]
     scheme_choice = ttk.Combobox(frame, values = scheme_list, width=42)
     scheme_choice.set("Select the naming scheme you want to use")
@@ -96,7 +77,7 @@ def gui():
     season_entry.pack(padx=5,pady=5)
     bottom_frame = Frame(base)
     bottom_frame.pack(side=BOTTOM)
-    run_button = Button(bottom_frame, text = "Rename Files!", command=lambda:run_all(entry_list[0],name_entry,ext_entry,total_entry,scheme_choice, 
+    run_button = Button(bottom_frame, text = "Rename Files!", command=lambda:run_all(e_list[0],e_list[1],e_list[2],e_list[3],scheme_choice, 
     season_entry), font = ("Impact 15"))
     run_button.pack(pady=5)
     base.title("Batch Rename")
