@@ -3,18 +3,7 @@
 import os
 from tkinter import BOTTOM, Button, Entry, Frame, Label, StringVar, Tk, ttk
 
-<<<<<<< HEAD
 def rename_files(directory,name,file_extension,total_episodes,ep_per_season,scheme):
-=======
-DIRECTORY = ""
-NAME = ""
-FILE_EXTENSION = ".mkv"
-TOTAL_EPISODES = 0
-NAMING_SCHEME = ""
-EP_PER_SEASON = 0
-
-def rename_files(directory,name,file_extension,total_episodes,scheme):
->>>>>>> parent of 4260a1f (fixing it even more, removing usless stuff)
     episode = 1
     season = 1
     for filename in os.listdir(directory):
@@ -64,6 +53,8 @@ def gui():
     ext_entry_text = ".mkv"
     total_label_text = "Enter the total number of episodes:"
     total_entry_text = "total number of episodes"
+    season_label_text = "Enter how many episodes there are per season:\n(leave this option at 9999 if it is not needed)"
+    season_entry_text = "9999"
     label_entry_pack(dir_label_text,dir_entry_text,frame,e_list)
     label_entry_pack(name_label_text,name_entry_text,frame,e_list)
     label_entry_pack(ext_label_text,ext_entry_text,frame,e_list)
@@ -72,17 +63,11 @@ def gui():
     scheme_choice = ttk.Combobox(frame, values = scheme_list, width=42)
     scheme_choice.set("Select the naming scheme you want to use")
     scheme_choice.pack(pady = 10)
-    season_text = StringVar()
-    season_text.set("Enter how many episodes there are per season:\n(leave this option at 9999 if it is not needed)")
-    season_label = Label(frame, textvariable = season_text)
-    season_label.pack()
-    season_entry = Entry(frame, width = 45,bd=2,)
-    season_entry.insert(0,"9999")
-    season_entry.pack(padx=5,pady=5)
+    label_entry_pack(season_label_text,season_entry_text,frame,e_list)
     bottom_frame = Frame(base)
     bottom_frame.pack(side=BOTTOM)
     run_button = Button(bottom_frame, text = "Rename Files!", command=lambda:run_all(e_list[0],e_list[1],e_list[2],e_list[3],scheme_choice, 
-    season_entry), font = ("Impact 15"))
+    e_list[4]), font = ("Impact 15"))
     run_button.pack(pady=5)
     base.title("Batch Rename")
     base.mainloop()
@@ -123,6 +108,8 @@ def label_entry_pack(label_desc, entry_text, frame, entry_list:list):
     entry_list.append(entry)
 
 def run_all(dir:Entry,name:Entry,ext:Entry,total:Entry,scheme:ttk.Combobox,season:Entry):
+    global NAMING_SCHEME,BRUH, ASDF
+    ASDF = "NIGGA"
     set_dir(dir)
     set_name(name)
     set_ext(ext)
