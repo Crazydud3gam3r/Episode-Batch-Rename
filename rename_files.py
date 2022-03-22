@@ -72,31 +72,6 @@ def gui():
     base.title("Batch Rename")
     base.mainloop()
 
-def set_dir(entry:Entry):
-    global DIRECTORY
-    DIRECTORY = entry.get() + "\\"
-    os.chdir(DIRECTORY)
-    
-def set_name(entry:Entry):
-    global NAME
-    NAME = entry.get()
-
-def set_ext(entry:Entry):
-    global FILE_EXTENSION
-    FILE_EXTENSION = entry.get()
-
-def set_total(entry:Entry):
-    global TOTAL_EPISODES
-    TOTAL_EPISODES = int(entry.get())
-
-def set_naming(combo:ttk.Combobox):
-    global NAMING_SCHEME
-    NAMING_SCHEME = combo.get()
-
-def set_season(entry:Entry):
-    global EP_PER_SEASON
-    EP_PER_SEASON = int(entry.get())
-
 def label_entry_pack(label_desc, entry_text, frame, entry_list:list):
     text = StringVar()
     text.set(label_desc)
