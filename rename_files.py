@@ -3,11 +3,11 @@
 import os
 from tkinter import BOTTOM, Button, Entry, Frame, Label, StringVar, Tk, ttk
 
-def rename_files(directory,name,file_extension,total_episodes,scheme,episodes_per_season):
+def rename_files(directory,name,file_extension,total_episodes,ep_per_season,scheme):
     episode = 1
     season = 1
     for filename in os.listdir(directory):
-        if episode > EP_PER_SEASON:
+        if episode > ep_per_season:
             season += 1
             episode = 1
         EP = str(episode)
