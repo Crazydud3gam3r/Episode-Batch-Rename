@@ -47,17 +47,21 @@ def rename_files(directory,name,file_extension,total_episodes,scheme):
         episode += 1
 
 def gui():
+    entry_list = []
     base = Tk()
     base.geometry("300x370")
     frame = Frame(base)
     frame.pack()
-    dir_text = StringVar()
-    dir_text.set("Enter the path to the folder containing the files:")
-    dir_label = Label(frame, textvariable = dir_text)
-    dir_label.pack()
-    dir_entry = Entry(frame, width = 45,bd=2,)
-    dir_entry.insert(0,"path to folder")
-    dir_entry.pack(padx=5,pady=5)
+    dir_label = "Enter the path to the folder containing the files:"
+    sdf = "path to folder"
+    label_entry_pack(asdf,sdf,frame,entry_list)
+    # dir_text = StringVar()
+    # dir_text.set("Enter the path to the folder containing the files:")
+    # dir_label = Label(frame, textvariable = dir_text)
+    # dir_label.pack()
+    # dir_entry = Entry(frame, width = 45,bd=2,)
+    # dir_entry.insert(0,"path to folder")
+    # dir_entry.pack(padx=5,pady=5)
     name_text = StringVar()
     name_text.set("Enter the name of the show:")
     name_label = Label(frame, textvariable = name_text)
@@ -92,7 +96,7 @@ def gui():
     season_entry.pack(padx=5,pady=5)
     bottom_frame = Frame(base)
     bottom_frame.pack(side=BOTTOM)
-    run_button = Button(bottom_frame, text = "Rename Files!", command=lambda:run_all(dir_entry,name_entry,ext_entry,total_entry,scheme_choice, 
+    run_button = Button(bottom_frame, text = "Rename Files!", command=lambda:run_all(entry_list[0],name_entry,ext_entry,total_entry,scheme_choice, 
     season_entry), font = ("Impact 15"))
     run_button.pack(pady=5)
     base.title("Batch Rename")
@@ -123,7 +127,7 @@ def set_season(entry:Entry):
     global EP_PER_SEASON
     EP_PER_SEASON = int(entry.get())
 
-def label_entry_pack(label_desc, entry_text, frame):
+def label_entry_pack(label_desc, entry_text, frame, entry_list:list):
     text = StringVar()
     text.set(label_desc)
     label = Label(frame, textvariable=text)
@@ -131,7 +135,7 @@ def label_entry_pack(label_desc, entry_text, frame):
     entry = Entry(frame, width = 45,bd=2,)
     entry.insert(0,entry_text)
     entry.pack(padx=5,pady=5)
-    return entry
+    entry_list.append(entry)
 
 def run_all(dir:Entry,name:Entry,ext:Entry,total:Entry,scheme:ttk.Combobox,season:Entry):
     set_dir(dir)
