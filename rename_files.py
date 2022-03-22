@@ -66,8 +66,8 @@ def gui():
     label_entry_pack(season_label_text,season_entry_text,frame,e_list)
     bottom_frame = Frame(base)
     bottom_frame.pack(side=BOTTOM)
-    run_button = Button(bottom_frame, text = "Rename Files!", command=lambda:run_all(e_list[0],e_list[1],e_list[2],e_list[3],scheme_choice, 
-    e_list[4]), font = ("Impact 15"))
+    run_button = Button(bottom_frame, text = "Rename Files!", command=lambda:run_all(e_list[0],e_list[1],e_list[2],e_list[3],e_list[4], 
+    scheme_choice), font = ("Impact 15"))
     run_button.pack(pady=5)
     base.title("Batch Rename")
     base.mainloop()
@@ -107,16 +107,9 @@ def label_entry_pack(label_desc, entry_text, frame, entry_list:list):
     entry.pack(padx=5,pady=5)
     entry_list.append(entry)
 
-def run_all(dir:Entry,name:Entry,ext:Entry,total:Entry,scheme:ttk.Combobox,season:Entry):
-    global NAMING_SCHEME,BRUH, ASDF
-    ASDF = "NIGGA"
-    set_dir(dir)
-    set_name(name)
-    set_ext(ext)
-    set_total(total)
-    set_naming(scheme)
-    set_season(season)
-    rename_files(DIRECTORY,NAME,FILE_EXTENSION,TOTAL_EPISODES,NAMING_SCHEME)
+def run_all(dir:Entry,name:Entry,ext:Entry,total:Entry,season:Entry,scheme:ttk.Combobox):
+    os.chdir(dir.get() + "\\")
+    rename_files(dir.get(),name.get(),ext.get(),int(total.get()),int(season.get()),scheme.get())
 
 if __name__ == "__main__":
     gui()
