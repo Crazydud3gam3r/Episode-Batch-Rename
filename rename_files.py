@@ -3,7 +3,7 @@
 import os
 from tkinter import BOTTOM, Button, Entry, Frame, Label, StringVar, Tk, ttk
 
-def rename_files(directory,name,file_extension,total_episodes,scheme,ep_per_season,starting_ep):
+def rename_files(directory,name,file_extension,total_episodes,scheme,starting_ep,ep_per_season):
     episode = starting_ep
     season = 1
     for filename in os.listdir(directory):
@@ -56,7 +56,7 @@ def gui():
     total_label_text = "Enter the total number of episodes:"
     total_entry_text = "total number of episodes"
     season_label_text = "Enter how many episodes there are per season:\nSet the season number by using a number < 10\nleave at 1 if unneeded"
-    season_entry_text = "9999"
+    season_entry_text = "1"
     starting_label_text = "Enter the starting episode number:\n(leave at 1 if unneeded)"
     starting_entry_text = "1"
     label_entry_pack(dir_label_text,dir_entry_text,frame,e_list)
@@ -87,10 +87,10 @@ def label_entry_pack(label_desc, entry_text, frame, entry_list:list):
     entry.pack(padx=5,pady=5)
     entry_list.append(entry)
 
-def run_all(dir:Entry,name:Entry,ext:Entry,total:Entry,scheme:ttk.Combobox,starting:Entry,season:Entry,):
+def run_all(dir:Entry,name:Entry,ext:Entry,total:Entry,scheme:ttk.Combobox,starting:Entry,season:Entry):
     directory = dir.get() + "\\"
     os.chdir(directory)
-    rename_files(directory,name.get(),ext.get(),int(total.get()),scheme.get(),int(season.get()),int(starting.get()))
+    rename_files(directory,name.get(),ext.get(),int(total.get()),scheme.get(),int(starting.get()),int(season.get()))
 
 if __name__ == "__main__":
     gui()
