@@ -3,8 +3,8 @@
 import os
 from tkinter import BOTTOM, Button, Entry, Frame, Label, StringVar, Tk, ttk
 
-def rename_files(directory,name,file_extension,total_episodes,ep_per_season,scheme):
-    episode = 1
+def rename_files(directory,name,file_extension,total_episodes,scheme,ep_per_season,starting_ep):
+    episode = starting_ep
     season = 1
     for filename in os.listdir(directory):
         if ep_per_season < 10:
@@ -63,16 +63,16 @@ def gui():
     label_entry_pack(name_label_text,name_entry_text,frame,e_list)
     label_entry_pack(ext_label_text,ext_entry_text,frame,e_list)
     label_entry_pack(total_label_text,total_entry_text,frame,e_list)
-    label_entry_pack(starting_label_text,starting_entry_text,frame,e_list)
-    label_entry_pack(season_label_text,season_entry_text,frame,e_list)
-    scheme_list = ["<Name> Episode #" , "<Name> Season # Episode #", "<Name> E#","<Name> S#E#"]
+    scheme_list = ["<Name> - Episode #" , "<Name> - Season # Episode #", "<Name> - E#","<Name> - S#E#"]
     scheme_choice = ttk.Combobox(frame, values = scheme_list, width=42)
     scheme_choice.set("Select the naming scheme you want to use")
     scheme_choice.pack(pady = 10)
     bottom_frame = Frame(base)
     bottom_frame.pack(side=BOTTOM)
-    run_button = Button(bottom_frame, text = "Rename Files!", command=lambda:run_all(e_list[0],e_list[1],e_list[2],e_list[3],e_list[4], 
-    scheme_choice), font = ("Impact 15"))
+    label_entry_pack(starting_label_text,starting_entry_text,frame,e_list)
+    label_entry_pack(season_label_text,season_entry_text,frame,e_list)
+    run_button = Button(bottom_frame, text = "Rename Files!", command=lambda:run_all(e_list[0],e_list[1],e_list[2],e_list[3], 
+    scheme_choice,e_list[4],e_list[5]), font = ("Impact 15"))
     run_button.pack(pady=5)
     base.title("Batch Rename")
     base.mainloop()
@@ -87,10 +87,10 @@ def label_entry_pack(label_desc, entry_text, frame, entry_list:list):
     entry.pack(padx=5,pady=5)
     entry_list.append(entry)
 
-def run_all(dir:Entry,name:Entry,ext:Entry,total:Entry,season:Entry,scheme:ttk.Combobox):
+def run_all(dir:Entry,name:Entry,ext:Entry,total:Entry,scheme:ttk.Combobox,starting:Entry,season:Entry,):
     directory = dir.get() + "\\"
     os.chdir(directory)
-    rename_files(directory,name.get(),ext.get(),int(total.get()),int(season.get()),scheme.get())
+    rename_files(directory,name.get(),ext.get(),int(total.get()),scheme.get(),int(season.get()),int(starting.get()))
 
 if __name__ == "__main__":
     gui()
