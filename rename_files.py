@@ -3,18 +3,15 @@
 import os
 from tkinter import BOTTOM, Button, Entry, Frame, Label, StringVar, Tk, ttk
 
-def rename_files(directory,name,file_extension,total_episodes,scheme,starting_ep,ep_per_season):
+def rename_files(directory,name,file_extension,total_episodes,scheme,starting_ep,season_number):
     episode = starting_ep
     season = 1
     for filename in os.listdir(directory):
-        if ep_per_season < 10:
-            season = ep_per_season
-        elif episode > ep_per_season:
-            season += 1
-            episode = 1
+        if season_number < 10:
+            season = "0" + str(season_number)
         EP = str(episode)
         source = directory + filename
-        if total_episodes > 10 and not (total_episodes > 100):
+        if total_episodes >= 10 and not (total_episodes > 100):
             if episode <= 9:
                 EP = "0" + EP
         elif total_episodes >= 100 and not (total_episodes > 1000):
@@ -40,6 +37,7 @@ def rename_files(directory,name,file_extension,total_episodes,scheme,starting_ep
                 destination = directory + name + " - S" + str(season) + "E" + EP + file_extension
         os.rename(source, destination)
         episode += 1
+    os.close()
 
 def gui():
     e_list = []
@@ -55,7 +53,7 @@ def gui():
     ext_entry_text = ".mkv"
     total_label_text = "Enter the total number of episodes:"
     total_entry_text = "total number of episodes"
-    season_label_text = "Enter how many episodes there are per season:\nSet the season number by using a number < 10\nleave at 1 if unneeded"
+    season_label_text = "Set the season number\nleave at 1 if unneeded"
     season_entry_text = "1"
     starting_label_text = "Enter the starting episode number:\n(leave at 1 if unneeded)"
     starting_entry_text = "1"
