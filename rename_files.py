@@ -1,6 +1,7 @@
-#rename a lot of files at once, specifically in this case anime episodes
+#rename a lot of files at once for TV shows 
 
 import os
+import sys
 from tkinter import BOTTOM, Button, Entry, Frame, Label, StringVar, Tk, ttk
 
 def rename_files(directory,name,file_extension,total_episodes,scheme,starting_ep,season_number):
@@ -9,6 +10,8 @@ def rename_files(directory,name,file_extension,total_episodes,scheme,starting_ep
     for filename in os.listdir(directory):
         if season_number < 10:
             season = "0" + str(season_number)
+        else:
+            season = str(season_number)
         EP = str(episode)
         source = directory + filename
         if total_episodes >= 10 and not (total_episodes > 100):
@@ -37,7 +40,7 @@ def rename_files(directory,name,file_extension,total_episodes,scheme,starting_ep
                 destination = directory + name + " - S" + str(season) + "E" + EP + file_extension
         os.rename(source, destination)
         episode += 1
-    os.close()
+
 
 def gui():
     e_list = []
@@ -53,7 +56,7 @@ def gui():
     ext_entry_text = ".mkv"
     total_label_text = "Enter the total number of episodes:"
     total_entry_text = "total number of episodes"
-    season_label_text = "Set the season number\nleave at 1 if unneeded"
+    season_label_text = "Set the season number\n(leave at 1 if unneeded)"
     season_entry_text = "1"
     starting_label_text = "Enter the starting episode number:\n(leave at 1 if unneeded)"
     starting_entry_text = "1"
@@ -89,6 +92,10 @@ def run_all(dir:Entry,name:Entry,ext:Entry,total:Entry,scheme:ttk.Combobox,start
     directory = dir.get() + "\\"
     os.chdir(directory)
     rename_files(directory,name.get(),ext.get(),int(total.get()),scheme.get(),int(starting.get()),int(season.get()))
+
+def refresh(self):
+    self.destroy()
+    self.__init__()
 
 if __name__ == "__main__":
     gui()
