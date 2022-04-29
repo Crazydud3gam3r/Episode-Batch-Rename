@@ -30,43 +30,38 @@ def rename_files(directory,name,file_extension,total_episodes,scheme,starting_ep
             elif episode <= 999:
                 EP = "0" + EP
         match scheme:
-            case "<Name> - Episode #":
-                destination = directory + name + " - Episode " + EP + file_extension
-            case "<Name> - Season # Episode #":
-                destination = directory + name + " - Season " + str(season) + " - Episode " + EP + file_extension
-            case "<Name> - E#":
-                destination = directory + name + " - E" + EP + file_extension
-            case "<Name> - S#E#":
-                destination = directory + name + " - S" + str(season) + "E" + EP + file_extension
+            case "<Name> E#":
+                destination = directory + name + " E" + EP + file_extension
+            case "<Name> S#E#":
+                destination = directory + name + " S" + str(season) + "E" + EP + file_extension
         os.rename(source, destination)
         episode += 1
-
 
 def gui():
     e_list = []
     base = Tk()
-    base.geometry("300x450")
+    base.geometry("200x400")
     frame = Frame(base)
     frame.pack()
-    dir_label_text = "Enter the path to the folder containing the files:"
-    dir_entry_text = "path to folder"
-    name_label_text = "Enter the name of the show:"
-    name_entry_text = "name of show"
-    ext_label_text = "Enter the extension that the files use:"
+    dir_label_text = "Path to Folder:"
+    dir_entry_text = ""
+    name_label_text = "Name of Show"
+    name_entry_text = ""
+    ext_label_text = "File Extension"
     ext_entry_text = ".mkv"
-    total_label_text = "Enter the total number of episodes:"
-    total_entry_text = "total number of episodes"
-    season_label_text = "Set the season number\n(leave at 1 if unneeded)"
+    total_label_text = "Total Number of Episodes"
+    total_entry_text = ""
+    season_label_text = "Season Number:"
     season_entry_text = "1"
-    starting_label_text = "Enter the starting episode number:\n(leave at 1 if unneeded)"
+    starting_label_text = "Starting Episode Number:"
     starting_entry_text = "1"
     label_entry_pack(dir_label_text,dir_entry_text,frame,e_list)
     label_entry_pack(name_label_text,name_entry_text,frame,e_list)
     label_entry_pack(ext_label_text,ext_entry_text,frame,e_list)
     label_entry_pack(total_label_text,total_entry_text,frame,e_list)
-    scheme_list = ["<Name> - Episode #" , "<Name> - Season # Episode #", "<Name> - E#","<Name> - S#E#"]
-    scheme_choice = ttk.Combobox(frame, values = scheme_list, width=42)
-    scheme_choice.set("Select the naming scheme you want to use")
+    scheme_list = ["<Name> E#","<Name> S#E#"]
+    scheme_choice = ttk.Combobox(frame, values = scheme_list, width=26, justify= "center")
+    scheme_choice.set("Select Naming Scheme")
     scheme_choice.pack(pady = 10)
     bottom_frame = Frame(base)
     bottom_frame.pack(side=BOTTOM)
@@ -83,7 +78,7 @@ def label_entry_pack(label_desc, entry_text, frame, entry_list:list):
     text.set(label_desc)
     label = Label(frame, textvariable=text)
     label.pack()
-    entry = Entry(frame, width = 45,bd=2,)
+    entry = Entry(frame, width = 30,bd=2,)
     entry.insert(0,entry_text)
     entry.pack(padx=5,pady=5)
     entry_list.append(entry)
